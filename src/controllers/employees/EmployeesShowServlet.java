@@ -1,4 +1,5 @@
-package employees;
+package controllers.employees;
+
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
@@ -13,16 +14,16 @@ import models.Employee;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class EmployeesEditServlet
+ * Servlet implementation class EmployeesShowServlet
  */
-@WebServlet("/employees/edit")
-public class EmployeesEditServlet extends HttpServlet {
+@WebServlet("/employees/show")
+public class EmployeesShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeesEditServlet() {
+    public EmployeesShowServlet() {
         super();
     }
 
@@ -37,10 +38,8 @@ public class EmployeesEditServlet extends HttpServlet {
         em.close();
 
         request.setAttribute("employee", e);
-        request.setAttribute("_token", request.getSession().getId());
-        request.getSession().setAttribute("employee_id", e.getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
         rd.forward(request, response);
     }
 
